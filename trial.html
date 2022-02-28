@@ -1,0 +1,71 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="stylling.css">
+    
+    </head>
+    <body>
+        <div class="container">
+            <div class="addtask">
+                <input type="text" placeholder="Add a Task">
+                <button>add</button>
+
+            </div>
+            <ol class="pending">
+                <h2>pending tasks</h2>
+                
+            </ol>
+            <ol class="completed">
+                <h2>completed tasks</h2>
+                
+            </li>
+            </ol>
+        </div>
+        <script>
+
+            const input = document.querySelector('input');
+            const btn = document.querySelector('.addtask > button');
+
+            btn.addEventListener('click',addlist);
+            input.addEventListener('keyup',(e)=>{
+                (e.keyCode === 13? addlist(e) : null);
+            })
+            function addlist(e){
+                const pending = document.querySelector('.pending');
+                const completed = document.querySelector('.completed');
+
+                const newLi=document.createElement('li');
+                const checkBtn = document.createElement('button');
+                const delBtn = document.createElement('button');
+
+                checkBtn.innerHTML='<i class="fa fa-check"></i>';
+                delBtn.innerHTML='<i class="fas fa-trash-alt fa-lg"></i>';
+
+                if(input.value !==''){
+                    newLi.textContent=input.value;
+                    input.value='';
+                    pending.appendChild(newLi);
+                    newLi.appendChild(checkBtn);
+                    newLi.appendChild(delBtn);
+
+                }
+                checkBtn.addEventListener('click',function(){
+                    const parent= this.parentNode;
+                    parent.remove();
+                    completed.appendChild(parent);
+                    checkBtn.style.display="none";
+                });
+                delBtn.addEventListener('click',function(){
+                    const parent= this.parentNode;
+                    parent.remove();
+                
+                });
+
+                
+
+            }
+        </script>
+    </body>
+</html>
+</html>
